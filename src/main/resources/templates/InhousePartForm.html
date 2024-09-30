@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inhouse Part Form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Inhouse Part Detail</h1>
+
+    <!-- Displays error message -->
+    <div th:if="${errorMessage}" class="alert alert-danger">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <form action="#" th:action="@{/showFormAddInPart}" th:object="${inhousepart}" method="POST">
+        <!-- Adds hidden form field that handles update -->
+        <div class="form-group">
+            <input type="hidden" th:field="*{id}" />
+        </div>
+
+        <!-- Name Field -->
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" th:field="*{name}" placeholder="Name" class="form-control mb-4 col-4" />
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Name Error</p>
+        </div>
+
+        <!-- Price Field -->
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" th:field="*{price}" placeholder="Price" class="form-control mb-4 col-4" />
+            <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger">Price Error</p>
+        </div>
+
+        <!-- Temporary Inventory Field -->
+        <div class="form-group">
+            <label for="tempInv">Inventory</label>
+            <input type="text" th:field="*{tempInv}" placeholder="Inventory" class="form-control mb-4 col-4" />
+            <p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger"></p>
+        </div>
+
+        <!-- Minimum Inventory Field -->
+        <div class="form-group">
+            <label for="min">Minimum Inventory</label>
+            <input type="text" th:field="*{min}" placeholder="Minimum Inventory" class="form-control mb-4 col-4" />
+            <p th:if="${#fields.hasErrors('min')}" th:errors="*{min}" class="text-danger">Minimum Inventory Error</p>
+        </div>
+
+        <!-- Maximum Inventory Field -->
+        <div class="form-group">
+            <label for="max">Maximum Inventory</label>
+            <input type="text" th:field="*{max}" placeholder="Maximum Inventory" class="form-control mb-4 col-4" />
+            <p th:if="${#fields.hasErrors('max')}" th:errors="*{max}" class="text-danger">Maximum Inventory Error</p>
+        </div>
+
+        <!-- Part ID Field -->
+        <div class="form-group">
+            <label for="partId">Part ID</label>
+            <input type="text" th:field="*{partId}" placeholder="Part ID" class="form-control mb-4 col-4" />
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </form>
+
+    <a href="http://localhost:8080/">Link to Main Screen</a>
+</div>
+
+</body>
+</html>
+
+
+
