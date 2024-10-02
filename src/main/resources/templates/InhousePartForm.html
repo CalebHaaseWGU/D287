@@ -16,7 +16,7 @@
     </div>
 
     <form action="#" th:action="@{/showFormAddInPart}" th:object="${inhousepart}" method="POST">
-        <!-- Adds hidden form field that handles update -->
+        <!-- Adds a hidden form field that handles update -->
         <div class="form-group">
             <input type="hidden" th:field="*{id}" />
         </div>
