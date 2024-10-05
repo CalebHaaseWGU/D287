@@ -10,7 +10,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SampleInventory implements CommandLineRunner {
+public class SampleInventory implements CommandLineRunner { // Minor update for Part E - Adding sample inventory for testing purposes.
+
 
     private final PartService partService;
     private final ProductService productService;
