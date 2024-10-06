@@ -30,6 +30,7 @@ public class PriceProductValidator implements ConstraintValidator<ValidProductPr
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
+    // small changes made for commit log
     @Override
     public boolean isValid(Product product, ConstraintValidatorContext constraintValidatorContext) {
         if(context==null) return true;

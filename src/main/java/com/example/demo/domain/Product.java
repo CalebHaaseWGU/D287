@@ -42,7 +42,7 @@ public class Product implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
     Set<Part> parts = new HashSet<>();
 
-    // Constructors
+    // The Constructors
     public Product() {
     }
 
