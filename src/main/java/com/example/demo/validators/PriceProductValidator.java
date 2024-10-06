@@ -31,6 +31,8 @@ public class PriceProductValidator implements ConstraintValidator<ValidProductPr
     }
 
     // small changes made for commit log
+    // Updated validation to reflect requirements for Part I (Minor update).
+
     @Override
     public boolean isValid(Product product, ConstraintValidatorContext constraintValidatorContext) {
         if(context==null) return true;
