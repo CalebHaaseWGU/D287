@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 //Minor changes made
+// Added validation logic for min and max inventory values (Minor update for Part H).
 @Entity
 @ValidDeletePart
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

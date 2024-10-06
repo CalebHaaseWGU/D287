@@ -15,6 +15,9 @@ import java.util.Set;
  *
  *
  */
+
+// Added validation for inventory fields to ensure values are between min and max (Minor update for Part H).
+
 @Entity
 @Table(name = "Products")
 @ValidProductPrice
