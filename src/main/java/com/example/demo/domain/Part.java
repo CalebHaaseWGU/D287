@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+//Minor changes made
 @Entity
 @ValidDeletePart
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
