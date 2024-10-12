@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ProductController {
@@ -20,7 +21,7 @@ public class ProductController {
 
     // Handle the "Buy Now" action
     @GetMapping("/buyProduct")
-    public String buyProduct(@RequestParam("productID") Long productId, Model model) {
+    public String buyProduct(@RequestParam("productID") Long productId, RedirectAttributes redirectAttributes) {
         // Convert Long to int
         int productIdInt = productId.intValue();
 
@@ -31,14 +32,15 @@ public class ProductController {
         if (product.getInv() > 0) {
             product.setInv(product.getInv() - 1);
             productService.save(product);
-            model.addAttribute("message", "Purchase successful!");
+            redirectAttributes.addFlashAttribute("message", "Purchase successful!");
         } else {
-            model.addAttribute("message", "Purchase failed: Out of stock.");
+            redirectAttributes.addFlashAttribute("errorMessage", "Purchase failed: Out of stock.");
         }
 
-        // Redirect back to the main screen
+        // Redirect back to the main screen with feedback messages
         return "redirect:/mainscreen";
     }
-
 }
+
+
 

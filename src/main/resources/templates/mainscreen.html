@@ -16,8 +16,9 @@
     <a th:href="@{/about}" class="btn btn-info">About Us</a>
     <hr>
 
-    <!-- Display Purchase Message -->
-    <div th:if="${message}" class="alert alert-info" th:text="${message}"></div>
+    <!-- Display Success and Error Messages -->
+    <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+    <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
 
     <!-- Parts Section -->
     <h2>Parts</h2>
@@ -99,5 +100,6 @@
 
 </body>
 </html>
+
 
 
