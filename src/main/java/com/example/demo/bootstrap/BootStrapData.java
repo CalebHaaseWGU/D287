@@ -1,77 +1,113 @@
 package com.example.demo.bootstrap;
 
+import com.example.demo.domain.InhousePart;
 import com.example.demo.domain.OutsourcedPart;
 import com.example.demo.domain.Part;
-import com.example.demo.domain.Product;
 import com.example.demo.repositories.OutsourcedPartRepository;
 import com.example.demo.repositories.PartRepository;
 import com.example.demo.repositories.ProductRepository;
-import com.example.demo.service.OutsourcedPartService;
-import com.example.demo.service.OutsourcedPartServiceImpl;
-import com.example.demo.service.ProductService;
-import com.example.demo.service.ProductServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
-/**
- *
- *
- *
- *
- */
 @Component
 public class BootStrapData implements CommandLineRunner {
 
     private final PartRepository partRepository;
     private final ProductRepository productRepository;
-
     private final OutsourcedPartRepository outsourcedPartRepository;
 
     public BootStrapData(PartRepository partRepository, ProductRepository productRepository, OutsourcedPartRepository outsourcedPartRepository) {
         this.partRepository = partRepository;
         this.productRepository = productRepository;
-        this.outsourcedPartRepository=outsourcedPartRepository;
+        this.outsourcedPartRepository = outsourcedPartRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
-
-       /*
-        OutsourcedPart o= new OutsourcedPart();
-        o.setCompanyName("Western Governors University");
-        o.setName("out test");
-        o.setInv(5);
-        o.setPrice(20.0);
-        o.setId(100L);
-        outsourcedPartRepository.save(o);
-        OutsourcedPart thePart=null;
-        List<OutsourcedPart> outsourcedParts=(List<OutsourcedPart>) outsourcedPartRepository.findAll();
-        for(OutsourcedPart part:outsourcedParts){
-            if(part.getName().equals("out test"))thePart=part;
+        // Add "Processor" Inhouse Part
+        Optional<Part> existingProcessor = partRepository.findById(101L);
+        if (!existingProcessor.isPresent() || existingProcessor.get() instanceof InhousePart) {
+            InhousePart processor = new InhousePart();
+            processor.setName("Processor");
+            processor.setMin(1);
+            processor.setMax(20);
+            processor.setInv(10);
+            processor.setPrice(250.0);
+            processor.setPartId(101);  // Use int instead of long
+            partRepository.save(processor);
+            System.out.println("Added Processor Inhouse Part");
         }
 
-        System.out.println(thePart.getCompanyName());
-        */
-        List<OutsourcedPart> outsourcedParts=(List<OutsourcedPart>) outsourcedPartRepository.findAll();
-        for(OutsourcedPart part:outsourcedParts){
-            System.out.println(part.getName()+" "+part.getCompanyName());
+        // Add "Graphics Card" Outsourced Part
+        Optional<Part> existingGraphicsCard = partRepository.findById(102L);
+        if (!existingGraphicsCard.isPresent() || existingGraphicsCard.get() instanceof OutsourcedPart) {
+            OutsourcedPart graphicsCard = new OutsourcedPart();
+            graphicsCard.setName("Graphics Card");
+            graphicsCard.setMin(1);
+            graphicsCard.setMax(10);
+            graphicsCard.setInv(5);
+            graphicsCard.setPrice(500.0);
+            graphicsCard.setCompanyName("GPU World");
+            graphicsCard.setId(102L);  // Use long for OutsourcedPart ID
+            partRepository.save(graphicsCard);
+            System.out.println("Added Graphics Card Outsourced Part");
         }
 
-        /*
-        Product bicycle= new Product("bicycle",100.0,15);
-        Product unicycle= new Product("unicycle",100.0,15);
-        productRepository.save(bicycle);
-        productRepository.save(unicycle);
-        */
+        // Add "RAM" Inhouse Part
+        Optional<Part> existingRAM = partRepository.findById(103L);
+        if (!existingRAM.isPresent() || existingRAM.get() instanceof InhousePart) {
+            InhousePart ram = new InhousePart();
+            ram.setName("RAM");
+            ram.setMin(5);
+            ram.setMax(50);
+            ram.setInv(20);
+            ram.setPrice(100.0);
+            ram.setPartId(103);  // Use int instead of long
+            partRepository.save(ram);
+            System.out.println("Added RAM Inhouse Part");
+        }
 
-        System.out.println("Started in Bootstrap");
-        System.out.println("Number of Products"+productRepository.count());
-        System.out.println(productRepository.findAll());
-        System.out.println("Number of Parts"+partRepository.count());
+        // Add "Hard Drive" Outsourced Part
+        Optional<Part> existingHardDrive = partRepository.findById(104L);
+        if (!existingHardDrive.isPresent() || existingHardDrive.get() instanceof OutsourcedPart) {
+            OutsourcedPart hardDrive = new OutsourcedPart();
+            hardDrive.setName("Hard Drive");
+            hardDrive.setMin(3);
+            hardDrive.setMax(30);
+            hardDrive.setInv(15);
+            hardDrive.setPrice(75.0);
+            hardDrive.setCompanyName("Storage Inc.");
+            hardDrive.setId(104L);  // Use long for OutsourcedPart ID
+            partRepository.save(hardDrive);
+            System.out.println("Added Hard Drive Outsourced Part");
+        }
+
+        // Add "Power Supply" Inhouse Part
+        Optional<Part> existingPowerSupply = partRepository.findById(105L);
+        if (!existingPowerSupply.isPresent() || existingPowerSupply.get() instanceof InhousePart) {
+            InhousePart powerSupply = new InhousePart();
+            powerSupply.setName("Power Supply");
+            powerSupply.setMin(2);
+            powerSupply.setMax(15);
+            powerSupply.setInv(8);
+            powerSupply.setPrice(60.0);
+            powerSupply.setPartId(105);  // Use int instead of long
+            partRepository.save(powerSupply);
+            System.out.println("Added Power Supply Inhouse Part");
+        }
+
+        // Print out the current state of the database
+        System.out.println("Number of Parts: " + partRepository.count());
         System.out.println(partRepository.findAll());
-
     }
 }
+
+
+
+
+
+
+
+
