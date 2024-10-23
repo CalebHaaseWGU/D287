@@ -2,33 +2,42 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Part Form</title>
+    <title>Outsourced Part Form</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 <h1>Outsourced Part Detail</h1>
 
+<!-- Display custom error message if it exists -->
+<div th:if="${errorMessage}" class="alert alert-danger">
+    <p th:text="${errorMessage}"></p>
+</div>
+
 <form action="#" th:action="@{/showFormAddOutPart}" th:object="${outsourcedpart}" method="POST">
 
-    <!-- Added error messages for inventory validation (Minor update for Part H) -->
-    <!-- Adds hidden form field to handle update -->
+    <!-- Hidden form field for part ID -->
     <p><input type="hidden" th:field="*{id}"/></p>
 
+    <!-- Name Field -->
     <p><input type="text" th:field="*{name}" placeholder="Name" class="form-control mb-4 col-4"/></p>
 
+    <!-- Price Field -->
     <p><input type="text" th:field="*{price}" placeholder="Price" class="form-control mb-4 col-4"/></p>
     <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
 
+    <!-- Inventory Field -->
     <p><input type="text" th:field="*{inv}" placeholder="Inventory" class="form-control mb-4 col-4"/></p>
     <p th:if="${#fields.hasErrors('inv')}" th:errors="*{inv}">Inventory Error</p>
 
-    <!-- New Fields for Min and Max Inventory -->
+    <!-- Minimum Inventory Field -->
     <p><input type="text" th:field="*{min}" placeholder="Minimum Inventory" class="form-control mb-4 col-4"/></p>
     <p th:if="${#fields.hasErrors('min')}" th:errors="*{min}">Minimum Inventory Error</p>
 
+    <!-- Maximum Inventory Field -->
     <p><input type="text" th:field="*{max}" placeholder="Maximum Inventory" class="form-control mb-4 col-4"/></p>
     <p th:if="${#fields.hasErrors('max')}" th:errors="*{max}">Maximum Inventory Error</p>
 
+    <!-- Company Name Field -->
     <p><input type="text" th:field="*{companyName}" placeholder="Company Name" class="form-control mb-4 col-4"/></p>
 
     <p><input type="submit" value="Submit" /></p>
@@ -37,3 +46,6 @@
 <a href="http://localhost:8080/">Link to Main Screen</a>
 </body>
 </html>
+
+
+

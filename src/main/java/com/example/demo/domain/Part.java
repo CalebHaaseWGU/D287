@@ -9,10 +9,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-//Minor changes made
-// Added validation logic for min and max inventory values (Minor update for Part H).
+// Updated with validation for inventory values (Part H)
 @Entity
-@ValidDeletePart
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "part_type", discriminatorType = DiscriminatorType.INTEGER)
 @Table(name = "Parts")
@@ -79,14 +77,15 @@ public abstract class Part implements Serializable {
         return inv;
     }
 
+    // Updated setInv() method to validate inventory without throwing exceptions directly
     public void setInv(int inv) {
         if (inv < min) {
-            throw new IllegalArgumentException("Inventory cannot be less than minimum value");
+            throw new IllegalArgumentException("Inventory cannot be less than the minimum value: " + min);
+        } else if (inv > max) {
+            throw new IllegalArgumentException("Inventory cannot be greater than the maximum value: " + max);
+        } else {
+            this.inv = inv;
         }
-        if (inv > max) {
-            throw new IllegalArgumentException("Inventory cannot be greater than maximum value");
-        }
-        this.inv = inv;
     }
 
     public int getMin() {
@@ -113,6 +112,7 @@ public abstract class Part implements Serializable {
         this.products = products;
     }
 
+    @Override
     public String toString() {
         return this.name;
     }
@@ -132,5 +132,8 @@ public abstract class Part implements Serializable {
         return (int) (id ^ (id >>> 32));
     }
 }
+
+
+
 
 

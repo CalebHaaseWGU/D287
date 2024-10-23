@@ -64,7 +64,7 @@ public class AddInhousePartController {
                 part.setProducts(ip.getProducts());
             }
 
-            // Save the part, and this is where an IllegalArgumentException might be thrown
+            // Save the part and this is where an IllegalArgumentException might be thrown
             repo.save(part);
         } catch (IllegalArgumentException e) {
             // Catch the exception and add an error message to the model
