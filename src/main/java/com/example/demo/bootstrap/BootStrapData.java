@@ -26,9 +26,10 @@ public class BootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Add "Processor" Inhouse Part
-        Optional<Part> existingProcessor = partRepository.findById(101L);
-        if (!existingProcessor.isPresent() || existingProcessor.get() instanceof InhousePart) {
+        if (partRepository.count() == 0) {
+            // Add "Processor" Inhouse Part
+            Optional<Part> existingProcessor = partRepository.findById(101L);
+
             InhousePart processor = new InhousePart();
             processor.setName("Processor");
             processor.setMin(1);
@@ -38,11 +39,11 @@ public class BootStrapData implements CommandLineRunner {
             processor.setPartId(101);  // Use int instead of long
             partRepository.save(processor);
             System.out.println("Added Processor Inhouse Part");
-        }
 
-        // Add "Graphics Card" Outsourced Part
-        Optional<Part> existingGraphicsCard = partRepository.findById(102L);
-        if (!existingGraphicsCard.isPresent() || existingGraphicsCard.get() instanceof OutsourcedPart) {
+
+            // Add "Graphics Card" Outsourced Part
+            Optional<Part> existingGraphicsCard = partRepository.findById(102L);
+
             OutsourcedPart graphicsCard = new OutsourcedPart();
             graphicsCard.setName("Graphics Card");
             graphicsCard.setMin(1);
@@ -53,11 +54,11 @@ public class BootStrapData implements CommandLineRunner {
             graphicsCard.setId(102L);  // Use long for OutsourcedPart ID
             partRepository.save(graphicsCard);
             System.out.println("Added Graphics Card Outsourced Part");
-        }
 
-        // Add "RAM" Inhouse Part
-        Optional<Part> existingRAM = partRepository.findById(103L);
-        if (!existingRAM.isPresent() || existingRAM.get() instanceof InhousePart) {
+
+            // Add "RAM" Inhouse Part
+            Optional<Part> existingRAM = partRepository.findById(103L);
+
             InhousePart ram = new InhousePart();
             ram.setName("RAM");
             ram.setMin(5);
@@ -67,11 +68,11 @@ public class BootStrapData implements CommandLineRunner {
             ram.setPartId(103);  // Use int instead of long
             partRepository.save(ram);
             System.out.println("Added RAM Inhouse Part");
-        }
 
-        // Add "Hard Drive" Outsourced Part
-        Optional<Part> existingHardDrive = partRepository.findById(104L);
-        if (!existingHardDrive.isPresent() || existingHardDrive.get() instanceof OutsourcedPart) {
+
+            // Add "Hard Drive" Outsourced Part
+            Optional<Part> existingHardDrive = partRepository.findById(104L);
+
             OutsourcedPart hardDrive = new OutsourcedPart();
             hardDrive.setName("Hard Drive");
             hardDrive.setMin(3);
@@ -82,11 +83,10 @@ public class BootStrapData implements CommandLineRunner {
             hardDrive.setId(104L);  // Use long for OutsourcedPart ID
             partRepository.save(hardDrive);
             System.out.println("Added Hard Drive Outsourced Part");
-        }
 
-        // Add "Power Supply" Inhouse Part
-        Optional<Part> existingPowerSupply = partRepository.findById(105L);
-        if (!existingPowerSupply.isPresent() || existingPowerSupply.get() instanceof InhousePart) {
+
+            // Add "Power Supply" Inhouse Part
+            Optional<Part> existingPowerSupply = partRepository.findById(105L);
             InhousePart powerSupply = new InhousePart();
             powerSupply.setName("Power Supply");
             powerSupply.setMin(2);
@@ -96,11 +96,12 @@ public class BootStrapData implements CommandLineRunner {
             powerSupply.setPartId(105);  // Use int instead of long
             partRepository.save(powerSupply);
             System.out.println("Added Power Supply Inhouse Part");
-        }
 
-        // Print out the current state of the database
-        System.out.println("Number of Parts: " + partRepository.count());
-        System.out.println(partRepository.findAll());
+
+            // Print out the current state of the database
+            System.out.println("Number of Parts: " + partRepository.count());
+            System.out.println(partRepository.findAll());
+        }
     }
 }
 
